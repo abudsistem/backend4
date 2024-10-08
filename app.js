@@ -1,12 +1,13 @@
 const config = require('./utils/config')
 const express = require('express')
 const app = express()
+require('express-async-errors');
 const cors = require('cors')
 const notesRouter = require('./controllers/notes')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
-
+//const supertest= require('supertest')
 mongoose.set('strictQuery', false)
 
 logger.info('connecting to', config.MONGODB_URI)
