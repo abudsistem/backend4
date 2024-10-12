@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 
 const helper = require('./test_helper')
 
-const Note = require('../models/note')
 const User = require('../models/user')
+const Note = require('../models/note')
 
 describe('when there is initially some notes saved', () => {
   beforeEach(async () => {
@@ -124,7 +124,6 @@ describe('when there is initially some notes saved', () => {
   })
 })
 
-
 describe('when there is initially one user at db', () => {
   beforeEach(async () => {
     await User.deleteMany({})
@@ -173,14 +172,13 @@ describe('when there is initially one user at db', () => {
       .expect('Content-Type', /application\/json/)
 
     const usersAtEnd = await helper.usersInDb()
-
     assert(result.body.error.includes('expected `username` to be unique'))
 
     assert.strictEqual(usersAtEnd.length, usersAtStart.length)
   })
 })
+
 after(async () => {
   await User.deleteMany({})
   await mongoose.connection.close()
-
 })
